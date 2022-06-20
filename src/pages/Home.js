@@ -22,6 +22,14 @@ class Home extends Component {
     todo.id = Math.random();
     // Create a array that contains the current array and the new todo item
     let new_list = [...this.state.todos, todo];
+
+    // validation feature to avoid duplicate todo tasks
+    const exists = this.state.todos.find(todoName => todoName.content === todo.content);
+    console.log(exists);
+    if (exists) {
+      return;
+    }
+    
     // Update the local state with the new array.
     this.setState({
       todos: new_list,
